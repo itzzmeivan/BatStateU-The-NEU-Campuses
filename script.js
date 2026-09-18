@@ -1,6 +1,7 @@
 function defineProperty() {
   var osccred = document.createElement("div");
   osccred.innerHTML = "Created by: <strong>BSIT - 1107</strong>";
+  osccred.innerHTML = " Created by:<a href='https://www.facebook.com/share/18L3BbkpqU/' target='_blank'><em>BSIT - 1107 OFFICIAL PAGE</em></a>";
 
   osccred.style.position = "relative";
   osccred.style.bottom = "0";
