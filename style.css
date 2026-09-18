@@ -62,9 +62,9 @@ h2{
 }
 
 p {
-  color: ivory;
+  color: white;
   padding: 10px;
-  margin: auto;
+  margin: 20px auto 0;
   font-family: 'Georgia', serif;
   font-size: 20px;
   
@@ -74,7 +74,7 @@ p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    padding: 27px;
+    padding: 30px;
 }
 
 
