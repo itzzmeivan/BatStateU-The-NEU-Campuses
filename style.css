@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background: linear-gradient(180deg, #7a0000 0%, #9f1a1a 100%);
@@ -32,17 +36,56 @@ body {
 }
 
 .nav-links a {
+    position: relative;
     color: #fff;
     text-decoration: none;
     font-weight: 600;
     padding: 8px 14px;
     border-radius: 999px;
-    transition: 0.25s ease;
+    transition: transform 0.2s ease, background 0.25s ease, box-shadow 0.25s ease;
     background: transparent;
+    overflow: hidden;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 5px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.95);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
 }
 
 .nav-links a:hover {
     background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+.nav-links a.nav-clicked {
+    animation: navPulse 0.35s ease;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12);
+}
+
+@keyframes navPulse {
+    0% {
+        transform: scale(0.95);
+    }
+    40% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 h1 { 
@@ -135,6 +178,126 @@ a {
     justify-content: center;
 }
 
+.contact-section {
+    width: min(920px, calc(100% - 40px));
+    margin: 30px auto 50px;
+    padding: 20px 0 0;
+    color: #2c2c2c;
+}
+
+.contact-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-heading::before {
+    content: "◔";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.08);
+}
+
+.contact-panel {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+}
+
+.contact-panel-header {
+    display: grid;
+    grid-template-columns: 1.2fr 1.3fr 1.8fr;
+    align-items: center;
+    min-height: 58px;
+    background: rgba(255,255,255,0.32);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.contact-panel-header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: 700;
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(0,0,0,0.12);
+}
+
+.contact-panel-header div:last-child {
+    border-right: none;
+}
+
+.contact-panel-header .header-label {
+    text-align: center;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.contact-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1.3fr 1.8fr;
+    min-height: 72px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.contact-row:last-child {
+    border-bottom: none;
+}
+
+.contact-row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 12px;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.12);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-row > div:last-child {
+    border-right: none;
+}
+
+.contact-row:nth-child(even) {
+    background: rgba(255,255,255,0.08);
+}
+
+.contact-campus {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color:whitesmoke;
+    text-align: left;
+    justify-content: flex-start !important;
+    padding-left: 18px !important;
+}
+
+.contact-numbers,
+.contact-email {
+    color:whitesmoke;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.contact-email {
+    word-break: break-word;
+}
+
 #contact {
     padding: 20px 30px 30px;
     color: white;
@@ -147,6 +310,22 @@ a {
 }
 
 @media (max-width: 600px) {
+    .contact-panel-header,
+    .contact-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-panel-header div,
+    .contact-row > div {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .contact-campus {
+        justify-content: center !important;
+        text-align: center;
+        padding-left: 12px !important;
+    }
     .top-nav {
         flex-direction: column;
         gap: 10px;
@@ -160,4 +339,12 @@ a {
     h1 {
         font-size: 30px;
     }
+}
+
+footer {
+    background-color: #7a0000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

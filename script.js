@@ -1,7 +1,6 @@
- function defineProperty() {
+function defineProperty() {
   var osccred = document.createElement("div");
- osccred.innerHTML =
-        "Created by: <strong>BSIT - 1107</strong>";
+  osccred.innerHTML = "Created by: <strong>BSIT - 1107</strong>";
 
   osccred.style.position = "relative";
   osccred.style.bottom = "0";
@@ -19,3 +18,20 @@
 }
 
 defineProperty();
+
+const navLinks = document.querySelectorAll('.nav-links a');
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    navLinks.forEach((item) => {
+      item.classList.remove('active', 'nav-clicked');
+    });
+
+    link.classList.add('active', 'nav-clicked');
+
+    clearTimeout(link.navTimer);
+    link.navTimer = setTimeout(() => {
+      link.classList.remove('nav-clicked');
+    }, 350);
+  });
+});
